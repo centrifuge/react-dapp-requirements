@@ -83,7 +83,7 @@ class DappRequirements extends Component {
             {!bypassChecks ? <CheckForBrowser BrowserUnsupportedComponent={BrowserUnsupportedComponent}
                                               isBrowserSupported={isBrowserSupported}>
                 <CheckForWeb3 Web3UnvailableComponent={Web3UnvailableComponent} web3Provided={web3Provided}>
-                    <CheckForNetwork NetworkLoadingComponent={NetworkLoadingComponent}
+                    <CheckForNetwork LoadingComponent={NetworkLoadingComponent}
                                      NetworkNotFoundComponent={NetworkNotFoundComponent}
                                      NetworkNotSupportedComponent={NetworkNotSupportedComponent}
                                      networkMap={this.props.networkMap}
