@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
+import {centeredStyle} from "./utils";
 
 
-class Web3UnvailableScreen extends Component {
+class Web3UnavailableScreen extends Component {
     render() {
-        return <div>
+        return <div style={centeredStyle}>
             <h1>
                 No connection to Ethereum
             </h1>
             <p>
-                You will need a way to connect and interact with Ethereum throw the Browser. The perfect way is
+                You will need a way to connect and interact with Ethereum through the Browser. The perfect way is
                 Metamask.
 
             </p>
@@ -30,17 +31,17 @@ class CheckForWeb3 extends Component {
 
     static propTypes = {
         web3Provided: PropTypes.func.isRequired,
-        Web3UnvailableComponent: PropTypes.func,
+        Web3UnavailableComponent: PropTypes.func,
     };
 
     static defaultProps = {
-        Web3UnvailableComponent: Web3UnvailableScreen
+        Web3UnavailableComponent: Web3UnavailableScreen
     };
 
     render() {
-        const {Web3UnvailableComponent, web3Provided} = this.props;
+        const {Web3UanvailableComponent, web3Provided} = this.props;
         if (!web3Provided()) {
-            return <Web3UnvailableComponent/>
+            return <Web3UnavailableComponent/>
         }
         return this.props.children;
     }

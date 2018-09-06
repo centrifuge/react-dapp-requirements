@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
-import {promiseWithTimeout} from "./utils";
+import {centeredStyle, promiseWithTimeout} from "./utils";
 
 
 class NetworkNotSupportedScreen extends Component {
     render() {
         const {currentNetwork, supportedNetworks} = this.props;
-        return <div>
+        return <div style={centeredStyle}>
             <h1>
-                {currentNetwork} network is not supported
+                {currentNetwork}  is not supported
             </h1>
             <p>
-                You must switch one of: {supportedNetworks.join(',')}
+                You must switch to : {supportedNetworks.join(',')}
             </p>
         </div>
     }
@@ -19,12 +19,12 @@ class NetworkNotSupportedScreen extends Component {
 
 class NetworkNotFoundScreen extends Component {
     render() {
-        return <div>
+        return <div style={centeredStyle}>
             <h1>
                 Ethereum network not found
             </h1>
             <p>
-                Check your internet connection and you metamask and the reload the application
+                Check your internet connection and your Metamask and the reload the application
             </p>
 
         </div>
@@ -33,7 +33,7 @@ class NetworkNotFoundScreen extends Component {
 
 class LoadingScreen extends Component {
     render() {
-        return <div>
+        return <div style={centeredStyle}>
             <p>Checking network information</p>
         </div>
     }

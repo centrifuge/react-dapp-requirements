@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
+import {centeredStyle} from "./utils";
 
 class BrowserUnsupportedScreen extends Component {
     render() {
-        return <div>
+        return <div style={centeredStyle}>
             <h1>
                 Your browser is not supported
             </h1>
             <p>
-                To access the Centrifuge OS you need to install Chrome, Firefox, Opera, or Brave
+                To access the application you need to install Chrome, Firefox, Opera, or Brave
             </p>
         </div>
     }

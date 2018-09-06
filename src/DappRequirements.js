@@ -18,9 +18,9 @@ class DappRequirements extends Component {
         isBrowserSupported: PropTypes.func,
         onNetworkIdReceived: PropTypes.func,
         onAccountChange: PropTypes.func,
-        Web3UnvailableComponent: PropTypes.func,
+        Web3UnavailableComponent: PropTypes.func,
         BrowserUnsupportedComponent: PropTypes.func,
-        AccountUnvailableComponent: PropTypes.func,
+        AccountUnavailableComponent: PropTypes.func,
         AccountLoadingComponent: PropTypes.func,
         NetworkNotSupportedComponent: PropTypes.func,
         NetworkLoadingComponent: PropTypes.func,
@@ -64,7 +64,7 @@ class DappRequirements extends Component {
         const {
             BrowserUnsupportedComponent,
             isBrowserSupported,
-            Web3UnvailableComponent,
+            Web3UnavailableComponent,
             web3Provided,
             supportedNetworks,
             NetworkNotSupportedComponent,
@@ -72,7 +72,7 @@ class DappRequirements extends Component {
             NetworkNotFoundComponent,
             fetchNetwork,
             onNetworkIdReceived,
-            AccountUnvailableComponent,
+            AccountUnavailableComponent,
             AccountLoadingComponent,
             fetchAccount,
             onAccountChange
@@ -82,7 +82,7 @@ class DappRequirements extends Component {
         return <React.Fragment>
             {!bypassChecks ? <CheckForBrowser BrowserUnsupportedComponent={BrowserUnsupportedComponent}
                                               isBrowserSupported={isBrowserSupported}>
-                <CheckForWeb3 Web3UnvailableComponent={Web3UnvailableComponent} web3Provided={web3Provided}>
+                <CheckForWeb3 Web3UnavailableComponent={Web3UnavailableComponent} web3Provided={web3Provided}>
                     <CheckForNetwork LoadingComponent={NetworkLoadingComponent}
                                      NetworkNotFoundComponent={NetworkNotFoundComponent}
                                      NetworkNotSupportedComponent={NetworkNotSupportedComponent}
@@ -90,7 +90,7 @@ class DappRequirements extends Component {
                                      onNetworkIdReceived={onNetworkIdReceived}
                                      fetchNetwork={fetchNetwork}
                                      supportedNetworks={supportedNetworks}>
-                        <CheckForAccount AccountUnvailableComponent={AccountUnvailableComponent}
+                        <CheckForAccount AccountUnavailableComponent={AccountUnavailableComponent}
                                          LoadingComponent={AccountLoadingComponent}
                                          fetchAccount={fetchAccount}
                                          onAccountChange={onAccountChange}>
