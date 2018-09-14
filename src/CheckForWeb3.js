@@ -39,7 +39,7 @@ class CheckForWeb3 extends Component {
     };
 
     render() {
-        const {Web3UanvailableComponent, web3Provided} = this.props;
+        const {Web3UnavailableComponent, web3Provided} = this.props;
         if (!web3Provided()) {
             return <Web3UnavailableComponent/>
         }
