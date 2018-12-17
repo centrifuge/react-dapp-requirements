@@ -24,7 +24,7 @@ describe('<CheckForAccount />', () => {
 
     it("should render loading state", () => {
         const wrapper = mount(
-            <CheckForAccount AccountUnvailableComponent={UnsupportedScreen} LoadingComponent={LoadingScreen}
+            <CheckForAccount AccountUnavailableComponent={UnsupportedScreen} LoadingComponent={LoadingScreen}
                              fetchAccount={() => true}>
                 <ChildToRender/>
             </CheckForAccount>
@@ -43,7 +43,7 @@ describe('<CheckForAccount />', () => {
         }
 
         const wrapper = mount(
-            <CheckForAccount AccountUnvailableComponent={UnsupportedScreen} LoadingComponent={LoadingScreen}
+            <CheckForAccount AccountUnavailableComponent={UnsupportedScreen} LoadingComponent={LoadingScreen}
                              fetchAccount={fetchAccountSuccess(2)} onAccountChange={onAccountChange}>
                 <ChildToRender/>
             </CheckForAccount>
@@ -62,7 +62,7 @@ describe('<CheckForAccount />', () => {
         }
 
         const wrapper = mount(
-            <CheckForAccount AccountUnvailableComponent={UnsupportedScreen} LoadingComponent={LoadingScreen}
+            <CheckForAccount AccountUnavailableComponent={UnsupportedScreen} LoadingComponent={LoadingScreen}
                              fetchAccount={fetchAccountFailure} onAccountChange={onAccountChange}>
                 <ChildToRender/>
             </CheckForAccount>

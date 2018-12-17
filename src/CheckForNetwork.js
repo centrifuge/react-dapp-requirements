@@ -112,7 +112,7 @@ class CheckForNetwork extends Component {
 
             });
         } catch (e) {
-            throw new Error("this.props.fetchNetwork does not return a prommise!")
+            throw new Error("this.props.fetchNetwork does not return a promise!")
         }
     };
 

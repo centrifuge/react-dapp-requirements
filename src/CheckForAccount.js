@@ -95,7 +95,7 @@ class CheckForAccount extends Component {
 
             });
         } catch (e) {
-            throw new Error("this.props.fetchAccount does not return a prommise!")
+            throw new Error("this.props.fetchAccount does not return a promise!")
         }
     };
 
