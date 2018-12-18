@@ -57,7 +57,7 @@ class DappRequirements extends Component {
         },
         supportedNetworks: [4, 99999],
         isBrowserSupported: () => {
-            //Browsers that have the Metamask extension
+             // Browsers that have the Metamask extension
             return navigator.userAgent.match(/(opera|chrome|firefox)\/?\s*(\.?\d+(\.\d+)*)/i);
         },
         fetchProvider: async () => {
