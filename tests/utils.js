@@ -5,7 +5,7 @@ export class UnsupportedScreen extends Component {
     render() {
         return <div>
             <p className="unsupported">
-                Usupported
+                Unsupported
             </p>
         </div>
     }

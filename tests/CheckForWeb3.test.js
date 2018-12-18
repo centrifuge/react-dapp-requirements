@@ -11,7 +11,7 @@ describe('<CheckForWeb3 />', () => {
 
     it("should render the supplied child", () => {
         const wrapper = mount(
-            <CheckForWeb3 Web3UnvailableComponent={UnsupportedScreen} web3Provided={hasWeb3}>
+            <CheckForWeb3 Web3UnavailableComponent={UnsupportedScreen} web3Provided={hasWeb3}>
                 <ChildToRender/>
             </CheckForWeb3>
         );
@@ -21,7 +21,7 @@ describe('<CheckForWeb3 />', () => {
 
     it("should should  render the unsupported screen", () => {
         const wrapper = mount(
-            <CheckForWeb3 Web3UnvailableComponent={UnsupportedScreen} web3Provided={noWeb3}>
+            <CheckForWeb3 Web3UnavailableComponent={UnsupportedScreen} web3Provided={noWeb3}>
                 <ChildToRender/>
             </CheckForWeb3>
         );
