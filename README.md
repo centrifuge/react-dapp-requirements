@@ -79,7 +79,7 @@ class App extends Component {
   };
 
   render() {
-    // Add your on rendering components that can have a custom styles,internationalization ,etc  
+    // Add your on rendering components that can have custom styles,internationalization ,etc  
     let dappRequirementsScreens = {
       BrowserUnsupportedComponent: injectIntl(BrowserUnsupportedScreen),
       Web3UnavailableComponent: injectIntl(Web3UnavailableScreen),
