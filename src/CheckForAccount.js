@@ -1,116 +1,117 @@
-import React, {Component} from 'react';
-import {centeredStyle, promiseWithTimeout} from "./utils";
-import PropTypes from "prop-types";
-
+import React, { Component } from 'react';
+import { centeredStyle, promiseWithTimeout } from './utils';
+import PropTypes from 'prop-types';
 
 class AccountUnavailableScreen extends Component {
-    render() {
-        return <div style={centeredStyle}>
-            <h1>
-                Your Metamask is locked
-            </h1>
-            <p>
-                Simply open Metamask and follow the instructions to unlock it.
-            </p>
-        </div>
-    }
+  render() {
+    return (
+      <div style={centeredStyle}>
+        <h1>Your Metamask is locked</h1>
+        <p>Simply open Metamask and follow the instructions to unlock it.</p>
+      </div>
+    );
+  }
 }
 
 class LoadingScreen extends Component {
-    render() {
-        return <div style={centeredStyle}>
-            <p>Checking account information</p>
-        </div>
-    }
-
+  render() {
+    return (
+      <div style={centeredStyle}>
+        <p>Checking account information</p>
+      </div>
+    );
+  }
 }
 
 class CheckForAccount extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true,
-            selectedAccount: null,
-        };
-    }
-
-    static propTypes = {
-        fetchAccount: PropTypes.func.isRequired,
-        pullInterval: PropTypes.number,
-        onAccountChange: PropTypes.func,
-        AccountUnavailableComponent: PropTypes.func,
-        LoadingComponent: PropTypes.func,
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      selectedAccount: null
     };
+  }
 
-    static defaultProps = {
-        AccountUnavailableComponent: AccountUnavailableScreen,
-        LoadingComponent: LoadingScreen,
-        pullInterval: 500,
-    };
+  static propTypes = {
+    fetchAccount: PropTypes.func.isRequired,
+    pullInterval: PropTypes.number,
+    onAccountChange: PropTypes.func,
+    AccountUnavailableComponent: PropTypes.func,
+    LoadingComponent: PropTypes.func
+  };
 
-    componentDidMount() {
-        this.fetchData();
-        this.startPulling();
-    }
+  static defaultProps = {
+    AccountUnavailableComponent: AccountUnavailableScreen,
+    LoadingComponent: LoadingScreen,
+    pullInterval: 500
+  };
 
-    componentWillUnmount() {
-        this.stopPulling();
-    }
+  componentDidMount() {
+    this.fetchData();
+    this.startPulling();
+  }
 
-    stopPulling = () => {
-        clearInterval(this.interval);
-        this.interval = null;
-    };
+  componentWillUnmount() {
+    this.stopPulling();
+  }
 
-    startPulling = () => {
-        if (this.interval) return;
-        this.interval = setInterval(this.fetchData, this.props.pullInterval)
-    };
+  stopPulling = () => {
+    clearInterval(this.interval);
+    this.interval = null;
+  };
 
-    onAccountChange = (account) => {
-        if (this.props.onAccountChange) this.props.onAccountChange(account);
-    };
+  startPulling = () => {
+    if (this.interval) return;
+    this.interval = setInterval(this.fetchData, this.props.pullInterval);
+  };
 
-    fetchData = () => {
-        try {
-            promiseWithTimeout(this.props.pullInterval - 50, this.props.fetchAccount()).then((result) => {
-                const selectedAccount = result.shift();
-                if (selectedAccount !== this.state.selectedAccount) {
-                    this.setState({
-                        selectedAccount,
-                        loading: false
-                    });
-                    this.onAccountChange(selectedAccount);
-                }
-            }).catch(e => {
-                // ignore timeout. We only care about web3 errors
-                if(e !== 'promise.timeout') {
-                    this.setState({
-                        selectedAccount: null,
-                        loading: false
-                    });
-                    this.onAccountChange(null);
-                }
+  onAccountChange = (account) => {
+    if (this.props.onAccountChange) this.props.onAccountChange(account);
+  };
 
+  fetchData = () => {
+    try {
+      promiseWithTimeout(
+        this.props.pullInterval - 50,
+        this.props.fetchAccount()
+      )
+        .then((result) => {
+          const selectedAccount = result.shift();
+          if (selectedAccount !== this.state.selectedAccount) {
+            this.setState({
+              selectedAccount,
+              loading: false
             });
-        } catch (e) {
-            throw new Error("this.props.fetchAccount does not return a promise!")
-        }
-    };
-
-    render() {
-        const {AccountUnavailableComponent, LoadingComponent} = this.props;
-
-        if (this.state.loading) {
-            return <LoadingComponent/>;
-        }
-
-        if (!this.state.selectedAccount) {
-            return <AccountUnavailableComponent/>
-        }
-        return this.props.children;
+            this.onAccountChange(selectedAccount);
+          }
+        })
+        .catch((e) => {
+          // ignore timeout. We only care about web3 errors
+          if (e !== 'promise.timeout') {
+            this.setState({
+              selectedAccount: null,
+              loading: false
+            });
+            this.onAccountChange(null);
+          }
+        });
+    } catch (e) {
+      throw new Error('this.props.fetchAccount does not return a promise!');
     }
+  };
+
+  render() {
+    const { AccountUnavailableComponent, LoadingComponent } = this.props;
+
+    if (this.state.loading) {
+      return <LoadingComponent />;
+    }
+
+    if (!this.state.selectedAccount) {
+      return <AccountUnavailableComponent />;
+    }
+    return this.props.children;
+  }
 }
 
 export default CheckForAccount;
