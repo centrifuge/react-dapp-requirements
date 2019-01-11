@@ -127,11 +127,9 @@ class DappRequirements extends Component {
       NetworkLoadingComponent,
       NetworkNotFoundComponent,
       fetchNetwork,
-      onNetworkIdReceived,
       AccountUnavailableComponent,
       AccountLoadingComponent,
-      fetchAccount,
-      onAccountChange
+      fetchAccount
     } = this.props;
 
     return (

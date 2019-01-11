@@ -1,13 +1,14 @@
 # react-dapp-requirements
 
 Checks all requirements that a user needs in order to use a DApp. All checks must pass in order for the DApp to be rendered.
+
 - Supported Browser
 - Metamask installation
 - Metamask connection access
 - ETH network
 - Account
 
-The component uses a composition pattern which means that each requirement is a standalone component 
+The component uses a composition pattern which means that each requirement is a standalone component
 and can be used independently.
 
 The component comes with default properties, child components and methods which support web3 0.2.x and 1.x in order to work out of the box
@@ -56,30 +57,30 @@ static propTypes = {
     };
 ```
 
-How to use
------
+## How to use
+
 ```javascript
 
 
 class App extends Component {
-    
+
   onProviderReceived = (provider) => {
       if (provider) // is null if component failed to retrieve it, most likely is a web3/metamask issue
         // Instantiate a instance of web3
   };
-  
+
   onNetworkIdReceived = (networkId) => {
     if (networkId) // is null if component failed to retrieve it, most likely is a web3/metamask issue
       // Do something with the network id(dispatch a redux action for example)
   };
 
-  onAccountChange = (address, provider, networkId) => {
-      // This will not be dispatch if component fails to get the provider or the network 
+  onAccountChange = (address, networkId, provider) => {
+      // This will not be dispatch if component fails to get the provider or the network
       // Do something(dispatch a redux action for example)
   };
 
   render() {
-    // Add your on rendering components that can have custom styles,internationalization ,etc  
+    // Add your on rendering components that can have custom styles,internationalization ,etc
     let dappRequirementsScreens = {
       BrowserUnsupportedComponent: injectIntl(BrowserUnsupportedScreen),
       Web3UnavailableComponent: injectIntl(Web3UnavailableScreen),
@@ -100,7 +101,7 @@ class App extends Component {
                 onNetworkIdReceived={this.onNetworkIdReceived}
                 onAccountChange={this.onAccountChange}
               >
-              // Render if all checks pass  
+              // Render if all checks pass
       </DappRequirements>
     )
   }
@@ -110,23 +111,22 @@ class App extends Component {
 ```
 
 ### Disable component in tests
+
 ```javascript
 global.bypassChecks = true;
 ```
 
-Setup
------
+## Setup
 
 ### `npm install` or `yarn install`
 
-Testing
------
+## Testing
+
 ### `npm test` or `yarn test`
 
-Building
------
+## Building
+
 ### `npm run build` or `yarn build`
 
 Builds the component for production to the `dist` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
