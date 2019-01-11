@@ -7,7 +7,6 @@ import { promisify } from './utils';
 import PropTypes from 'prop-types';
 import CheckForProvider from './CheckForProvider';
 
-
 let _provider;
 let _networkId;
 
@@ -96,20 +95,21 @@ class DappRequirements extends Component {
     }
   };
 
-
   onProviderReceived = (provider) => {
     _provider = provider;
-    if(this.props.onProviderReceived) this.onProciderReceived(provider);
-  }
+    if (this.props.onProviderReceived) this.onProciderReceived(provider);
+  };
 
   onNetworkIdReceived = (networkId) => {
-     _networkId = networkId;
-     if(this.props.onNetworkIdReceived) this.props.onNetworkIdReceived(networkId);
-  }
+    _networkId = networkId;
+    if (this.props.onNetworkIdReceived)
+      this.props.onNetworkIdReceived(networkId);
+  };
 
   onAccountChange = (account) => {
-      if(this.props.onAccountChange) this.props.onAccountChange(account,_networkId, _provider);
-  }
+    if (this.props.onAccountChange)
+      this.props.onAccountChange(account, _networkId, _provider);
+  };
 
   render() {
     //used to skip rendering of components in a test env
@@ -153,14 +153,14 @@ class DappRequirements extends Component {
                   NetworkNotFoundComponent={NetworkNotFoundComponent}
                   NetworkNotSupportedComponent={NetworkNotSupportedComponent}
                   networkMap={this.props.networkMap}
-                  onNetworkIdReceived={onNetworkIdReceived}
+                  onNetworkIdReceived={this.onNetworkIdReceived}
                   fetchNetwork={fetchNetwork}
                   supportedNetworks={supportedNetworks}>
                   <CheckForAccount
                     AccountUnavailableComponent={AccountUnavailableComponent}
                     LoadingComponent={AccountLoadingComponent}
                     fetchAccount={fetchAccount}
-                    onAccountChange={onAccountChange}>
+                    onAccountChange={this.onAccountChange}>
                     {this.props.children}
                   </CheckForAccount>
                 </CheckForNetwork>
