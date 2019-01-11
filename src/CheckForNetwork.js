@@ -63,6 +63,7 @@ class CheckForNetwork extends Component {
     NetworkNotSupportedComponent: NetworkNotSupportedScreen,
     LoadingComponent: LoadingScreen,
     NetworkNotFoundComponent: NetworkNotFoundScreen,
+    onNetworkIdReceived: () => {},
     numberOfRetries: 3
   };
 
@@ -86,11 +87,6 @@ class CheckForNetwork extends Component {
     this.fetchData();
   }
 
-  onNetworkIdReceived = (networkId) => {
-    if (this.props.onNetworkIdReceived)
-      this.props.onNetworkIdReceived(networkId);
-  };
-
   fetchData = () => {
     try {
       promiseWithTimeout(500, this.props.fetchNetwork())
@@ -100,7 +96,7 @@ class CheckForNetwork extends Component {
             loading: false,
             networkId
           });
-          this.onNetworkIdReceived(networkId);
+          this.props.onNetworkIdReceived(networkId);
         })
         .catch((e) => {
           if (this.state.retries >= this.props.numberOfRetries) {
@@ -108,7 +104,7 @@ class CheckForNetwork extends Component {
               loading: false,
               hasNetworkConnection: false
             });
-            this.onNetworkIdReceived(null);
+            this.props.onNetworkIdReceived(null);
           } else {
             console.log('retry');
             this.setState({ retries: this.state.retries + 1 });

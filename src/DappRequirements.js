@@ -7,6 +7,10 @@ import { promisify } from './utils';
 import PropTypes from 'prop-types';
 import CheckForProvider from './CheckForProvider';
 
+
+let _provider;
+let _networkId;
+
 class DappRequirements extends Component {
   static propTypes = {
     // array of supported networks
@@ -92,6 +96,21 @@ class DappRequirements extends Component {
     }
   };
 
+
+  onProviderReceived = (provider) => {
+    _provider = provider;
+    if(this.props.onProviderReceived) this.onProciderReceived(provider);
+  }
+
+  onNetworkIdReceived = (networkId) => {
+     _networkId = networkId;
+     if(this.props.onNetworkIdReceived) this.props.onNetworkIdReceived(networkId);
+  }
+
+  onAccountChange = (account) => {
+      if(this.props.onAccountChange) this.props.onAccountChange(account,_networkId, _provider);
+  }
+
   render() {
     //used to skip rendering of components in a test env
     const { bypassChecks } = window;
@@ -103,7 +122,6 @@ class DappRequirements extends Component {
       ProviderUnavailableComponent,
       ProviderLoadingComponent,
       fetchProvider,
-      onProviderReceived,
       supportedNetworks,
       NetworkNotSupportedComponent,
       NetworkLoadingComponent,
@@ -129,7 +147,7 @@ class DappRequirements extends Component {
                 fetchProvider={fetchProvider}
                 ProviderUnavailableComponent={ProviderUnavailableComponent}
                 LoadingComponent={ProviderLoadingComponent}
-                onProviderReceived={onProviderReceived}>
+                onProviderReceived={this.onProviderReceived}>
                 <CheckForNetwork
                   LoadingComponent={NetworkLoadingComponent}
                   NetworkNotFoundComponent={NetworkNotFoundComponent}

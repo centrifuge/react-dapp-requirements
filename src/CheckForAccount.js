@@ -43,6 +43,7 @@ class CheckForAccount extends Component {
   static defaultProps = {
     AccountUnavailableComponent: AccountUnavailableScreen,
     LoadingComponent: LoadingScreen,
+    onAccountChange: () => {},
     pullInterval: 500
   };
 
@@ -65,10 +66,6 @@ class CheckForAccount extends Component {
     this.interval = setInterval(this.fetchData, this.props.pullInterval);
   };
 
-  onAccountChange = (account) => {
-    if (this.props.onAccountChange) this.props.onAccountChange(account);
-  };
-
   fetchData = () => {
     try {
       promiseWithTimeout(
@@ -82,7 +79,7 @@ class CheckForAccount extends Component {
               selectedAccount,
               loading: false
             });
-            this.onAccountChange(selectedAccount);
+            this.props.onAccountChange(selectedAccount);
           }
         })
         .catch((e) => {
@@ -92,7 +89,7 @@ class CheckForAccount extends Component {
               selectedAccount: null,
               loading: false
             });
-            this.onAccountChange(null);
+            this.props.onAccountChange(null);
           }
         });
     } catch (e) {

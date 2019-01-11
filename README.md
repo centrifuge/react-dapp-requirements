@@ -64,18 +64,18 @@ How to use
 class App extends Component {
     
   onProviderReceived = (provider) => {
-      if (provider)
+      if (provider) // is null if component failed to retrieve it, most likely is a web3/metamask issue
         // Instantiate a instance of web3
   };
   
   onNetworkIdReceived = (networkId) => {
-    if (networkId)
+    if (networkId) // is null if component failed to retrieve it, most likely is a web3/metamask issue
       // Do something with the network id(dispatch a redux action for example)
   };
 
-  onAccountChange = (address) => {
-    if (address)
-      // Do something with the account address(dispatch a redux action for example)
+  onAccountChange = (address, provider, networkId) => {
+      // This will not be dispatch if component fails to get the provider or the network 
+      // Do something(dispatch a redux action for example)
   };
 
   render() {
