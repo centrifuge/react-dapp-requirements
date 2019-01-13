@@ -9,7 +9,7 @@ class Web3UnavailableScreen extends Component {
         <h1>No connection to Ethereum</h1>
         <p>
           You will need a way to connect and interact with Ethereum through the
-          Browser. The perfect way is Metamask.
+          browser. The easiest way is Metamask.
         </p>
         <a href="https://metamask.io" rel="noopener noreferrer" target="_blank">
           Install Metamask

@@ -44,16 +44,13 @@ class CheckForProvider extends Component {
 
   static defaultProps = {
     ProviderUnavailableComponent: ProviderUnavailableScreen,
-    LoadingComponent: LoadingScreen
+    LoadingComponent: LoadingScreen,
+    onProviderReceived: () => {}
   };
 
   componentDidMount() {
     this.fetchData();
   }
-
-  onProviderReceived = (provider) => {
-    if (this.props.onProviderReceived) this.props.onProviderReceived(provider);
-  };
 
   fetchData = () => {
     this.setState({
@@ -69,7 +66,7 @@ class CheckForProvider extends Component {
               selectedProvider,
               loading: false
             });
-            this.onProviderReceived(selectedProvider);
+            this.props.onProviderReceived(selectedProvider);
           }
         })
         .catch((e) => {
@@ -79,7 +76,7 @@ class CheckForProvider extends Component {
               selectedProvider: null,
               loading: false
             });
-            this.onProviderReceived(null);
+            this.props.onProviderReceived(null);
           }
         });
     } catch (e) {
