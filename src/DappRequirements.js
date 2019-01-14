@@ -97,7 +97,7 @@ class DappRequirements extends Component {
 
   onProviderReceived = (provider) => {
     _provider = provider;
-    if (this.props.onProviderReceived) this.onProciderReceived(provider);
+    if (this.props.onProviderReceived) this.onProviderReceived(provider);
   };
 
   onNetworkIdReceived = (networkId) => {
