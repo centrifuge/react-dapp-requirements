@@ -1,6 +1,6 @@
 {
   "name": "react-dapp-requirements",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "(https://github.com/centrifuge/react-dapp-requirements)",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
