@@ -74,6 +74,6 @@
     "rollup-plugin-filesize": "^4.0.1",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-progress": "^0.4.0",
-    "standard-version": "^4.4.0"
+    "standard-version": "^8.0.1"
   }
 }
